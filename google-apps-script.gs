@@ -27,6 +27,15 @@
 
 var OWNER_EMAIL = "krishbylbroadband@gmail.com";
 
+/**
+ * SHEET_ID — paste the ID of your Google Sheet here (recommended).
+ * Find it in the Sheet's URL:
+ *   https://docs.google.com/spreadsheets/d/THIS_LONG_ID_HERE/edit
+ * Leaving it "" only works if this script was created from INSIDE the
+ * Sheet (Extensions → Apps Script). Setting it explicitly always works.
+ */
+var SHEET_ID = "";
+
 // Columns captured (in this order) for every submission.
 var FIELDS = ["name", "phone", "email", "address", "plan", "time", "subject", "msg", "page"];
 
@@ -40,7 +49,8 @@ function doPost(e) {
     }
 
     var type = (params.form_type || "Enquiry").toString().slice(0, 50);
-    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var ss = SHEET_ID ? SpreadsheetApp.openById(SHEET_ID) : SpreadsheetApp.getActiveSpreadsheet();
+    if (!ss) { throw new Error("No spreadsheet found. Set SHEET_ID at the top of the script."); }
     var sheet = ss.getSheetByName(type) || ss.insertSheet(type);
 
     // Write a header row the first time this tab is used.
@@ -84,4 +94,23 @@ function _json(obj) {
 // Optional: lets you open the Web app URL in a browser to confirm it's live.
 function doGet() {
   return ContentService.createTextOutput("Krishbyl Broadband form handler is running.");
+}
+
+/**
+ * DIAGNOSTIC — run this once from the editor to test everything.
+ * In the Apps Script editor: pick "testWrite" in the function dropdown → Run.
+ * The first run asks for authorization — allow it.
+ * If it works, a row appears in your Sheet and you get an email.
+ * If it fails, the editor shows the exact error (and the Executions log).
+ */
+function testWrite() {
+  doPost({ parameter: {
+    form_type: "New Connection",
+    name: "EDITOR TEST - please delete",
+    phone: "7292058549",
+    email: "krishbylbroadband@gmail.com",
+    address: "Sector 63, Noida",
+    plan: "Smart 200 Mbps",
+    msg: "Test row created from the Apps Script editor"
+  }});
 }
