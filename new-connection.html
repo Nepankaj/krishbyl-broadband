@@ -47,58 +47,17 @@
     </div>
   </section>
 
-  <!-- ===== Google Form embed ===== -->
+  <!-- ===== New Connection form ===== -->
   <section class="bg-soft">
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Apply Online</span>
         <h2>New Connection Request Form</h2>
-        <p>Takes less than 2 minutes. All fields are confidential and used only to set up your connection.</p>
+        <p>Takes less than 2 minutes. We'll call you to confirm coverage and schedule free installation.</p>
       </div>
 
-      <!--
-        ============================================================
-        GOOGLE FORM EMBED
-        ------------------------------------------------------------
-        Replace the src below with YOUR Google Form embed URL:
-          1. Open your Google Form  →  Send  →  < >  (Embed HTML)
-          2. Copy the src="..." link (it ends with ?embedded=true)
-          3. Paste it into the iframe src attribute below.
-        Until then, the fallback form underneath is shown as a backup.
-        ============================================================
-      -->
-      <div class="embed-wrap" id="googleFormWrap">
-        <iframe
-          class="form-embed"
-          src="https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_FORM_ID/viewform?embedded=true"
-          title="Krishbyl Broadband New Connection Form"
-          loading="lazy">
-          Loading…
-        </iframe>
-      </div>
-
-      <p style="text-align:center; margin-top:20px;">
-        Trouble with the form? Call us at <a href="tel:+917292058549"><b>+91 72920 58549</b></a>
-        or <a href="contact.html">contact us here</a>.
-      </p>
-    </div>
-  </section>
-
-  <!-- ===== Fallback / native form (optional) ===== -->
-  <section>
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Prefer a simple form?</span>
-        <h2>Quick enquiry</h2>
-        <p>Not ready for the full form? Drop your basic details and we'll reach out.</p>
-      </div>
-
-      <div class="form-card" style="max-width:720px; margin:0 auto;">
-        <div class="form-note">
-          ⚠️ This quick form is a demo. Connect it to your Google Form, Formspree, or CRM before going live
-          so submissions reach your inbox (see <code>README.md</code>).
-        </div>
-        <form id="contactForm" novalidate>
+      <div class="form-card" style="max-width:760px; margin:0 auto;">
+        <form class="js-lead-form" data-form="New Connection" novalidate>
           <div class="form-row">
             <div class="field">
               <label for="name">Full name *</label>
@@ -110,6 +69,10 @@
             </div>
           </div>
           <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" />
+          </div>
+          <div class="field">
             <label for="address">Installation address *</label>
             <input type="text" id="address" name="address" required placeholder="House / flat, street, area, city, PIN" />
           </div>
@@ -118,10 +81,10 @@
               <label for="plan">Preferred plan</label>
               <select id="plan" name="plan">
                 <option value="">Select a plan</option>
-                <option>Starter — 100 Mbps</option>
-                <option>Smart — 200 Mbps</option>
-                <option>Pro — 300 Mbps</option>
-                <option>Ultra — 1 Gbps</option>
+                <option>Starter — 100 Mbps (₹600)</option>
+                <option>Smart — 200 Mbps (₹710)</option>
+                <option>Pro — 300 Mbps (₹900)</option>
+                <option>Ultra — 1 Gbps (₹2500)</option>
                 <option>Business / Leased line</option>
                 <option>Not sure — help me choose</option>
               </select>
@@ -140,10 +103,17 @@
             <label for="msg">Anything else?</label>
             <textarea id="msg" name="msg" placeholder="Tell us about your usage, current ISP, or any questions."></textarea>
           </div>
-          <button type="submit" class="btn btn-primary btn-lg" style="width:100%">Submit enquiry</button>
-          <p id="formStatus" style="display:none; margin-top:16px; background:#e7f8f4; border:1px solid #a8e6d8; color:#04231f; padding:12px 16px; border-radius:10px; font-size:.92rem;"></p>
+          <!-- spam honeypot: real users never fill this -->
+          <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%">Submit request</button>
+          <p class="form-status" role="status" style="display:none; margin-top:16px; padding:12px 16px; border-radius:10px; font-size:.95rem;"></p>
         </form>
       </div>
+
+      <p style="text-align:center; margin-top:20px;">
+        Prefer to talk? Call us at <a href="tel:+917292058549"><b>+91 72920 58549</b></a>
+        or <a href="contact.html">contact us here</a>.
+      </p>
     </div>
   </section>
 

@@ -38,16 +38,21 @@ python -m http.server 8000
 
 Everything below uses obvious placeholders. Search the project for each and replace it.
 
-### 1. Google Form (New Connection) — **required**
-In `new-connection.html`, find the iframe with:
-```
-src="https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_FORM_ID/viewform?embedded=true"
-```
-Steps:
-1. Build your form in [Google Forms](https://forms.google.com) (Name, Phone, Address, Plan, etc.).
-2. Click **Send → `< >` (Embed HTML)**.
-3. Copy the `src="..."` URL (it ends in `?embedded=true`).
-4. Paste it into the iframe `src`.
+### 1. Form delivery — Google Sheet + email (**required**)
+The site uses its **own custom form** (no Google Forms). Submissions are sent to a free
+Google Apps Script Web App that **logs each request to a Google Sheet** and **emails you**.
+
+Setup (one time, ~5 min) — full steps are inside [`google-apps-script.gs`](google-apps-script.gs):
+1. Create a blank Google Sheet → **Extensions → Apps Script**.
+2. Paste the contents of `google-apps-script.gs`, Save.
+3. **Deploy → New deployment → Web app**, Execute as **Me**, Access **Anyone**, Deploy, authorize.
+4. Copy the **Web app URL** (ends in `/exec`).
+5. Open [`assets/js/main.js`](assets/js/main.js) and paste it into
+   `var FORM_ENDPOINT = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";`
+6. `git push` to redeploy. Test the form — a row appears in the Sheet and you get an email.
+
+Until the URL is set, the form shows a "please call us" message instead of losing data.
+Both the New Connection form and the Contact form use this same endpoint (separate Sheet tabs).
 
 ### 2. Phone numbers ✅ done
 Set to `+91 72920 58549` across all pages.
@@ -71,13 +76,9 @@ New Connection pages — update the banner text in those files to change/expire 
 In every footer, replace the `href="#"` on the social icons with your real
 Facebook / Instagram / X / WhatsApp links.
 
-### 7. (Optional) Make the contact/quick forms actually send
-The contact form and quick enquiry form are front-end only. Pick one:
-- **Easiest:** point users to the Google Form (already embedded on New Connection).
-- **Formspree:** create a form at [formspree.io](https://formspree.io), then set the
-  `<form>` to `action="https://formspree.io/f/yourid" method="POST"` and remove the
-  `id="contactForm"` (or keep the JS for validation).
-- **Your CRM / email:** wire the submit to your own endpoint.
+### 7. Form submissions
+Handled by the Apps Script in step 1 — both forms log to your Google Sheet and email you.
+A hidden honeypot field blocks basic spam bots automatically.
 
 ---
 
