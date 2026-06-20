@@ -12,7 +12,7 @@
      Until a real URL is set, the form shows a "please call us"
      message instead of silently losing submissions.
      ============================================================ */
-  var FORM_ENDPOINT = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+  var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxZ79M_1b2wljIhovUC6HXp86SZd0fGWOfY-TmSeY10XPN66qciHuliduPSHc-Ljayp5Q/exec";
 
   // ---- Mobile nav toggle ----
   var toggle = document.querySelector(".nav-toggle");
