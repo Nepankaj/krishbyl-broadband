@@ -49,21 +49,23 @@ Steps:
 3. Copy the `src="..."` URL (it ends in `?embedded=true`).
 4. Paste it into the iframe `src`.
 
-### 2. Phone numbers
-Replace every `+91 00000 00000` / `+910000000000` (in all 5 pages + footer).
+### 2. Phone numbers ✅ done
+Set to `+91 72920 58549` across all pages.
 
-### 3. Email addresses
-Replace `care@krishbyl.com` and `sales@krishbyl.com`.
+### 3. Email addresses ✅ done
+Set to `krishbylbroadband@gmail.com` across all pages.
 
 ### 4. Address & map
-- Replace the address text in `contact.html` and the footers.
-- In `contact.html`, replace the Google Maps iframe: open Google Maps → search your
-  address → **Share → Embed a map** → copy the iframe and paste it in place of the
-  existing `<iframe ... maps ...>`.
+- Address is set to **Sector 63, Noida, Uttar Pradesh** in `contact.html` and the footers.
+- The map currently searches "Sector 63 Noida". For an exact pin: open Google Maps →
+  search your precise address → **Share → Embed a map** → copy the iframe and paste it in
+  place of the existing `<iframe ... maps ...>` in `contact.html`.
 
-### 5. Plans & pricing
-Edit the plan cards in `plans.html` (and the preview in `index.html`) — change
-speeds, prices, and features to your real offers.
+### 5. Plans & pricing ✅ set
+Current plans: 100 Mbps ₹600, 200 Mbps ₹710, 300 Mbps ₹900, 1 Gbps ₹2500 (all + GST).
+Edit the plan cards in `plans.html` (and the preview in `index.html`) to change these.
+**Offer:** "New connection = 2 months extra validity free" is shown on Home, Plans, and
+New Connection pages — update the banner text in those files to change/expire it.
 
 ### 6. Social links
 In every footer, replace the `href="#"` on the social icons with your real
